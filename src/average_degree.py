@@ -29,6 +29,8 @@ def extract_timestamp(tweet):
 	return current_tweet_time
 
 def compare_time(current_time,parsed_time):
+	''' This function helps to compare the times of two tweets to check 
+		they fall within 60sec sliding window'''
 	if not current_time or not parsed_time :
 		return False
 	m_time =  datetime.strptime(parsed_time,'%a %b %d %H:%M:%S +0000 %Y')
@@ -40,6 +42,8 @@ def compare_time(current_time,parsed_time):
 		return False
 
 def parse_tweets_stream(input_tweet_stream):
+	''' This function takes raw input stream of tweets and processes 
+		them to tweets with only two fields: created_at and hashtags '''
 	tweets = []
 	for line in input_tweet_stream:
 	        tweet = json.loads(line)
@@ -53,6 +57,8 @@ def parse_tweets_stream(input_tweet_stream):
 
 
 def average_degree(tweets):
+	''' Calculates the average degree of the graph'''
+	''' uses "networkx" module for creating and updating graphs'''
 	current_graph = nx.Graph()
 	print len(tweets)
 	i = 0
@@ -88,6 +94,7 @@ def average_degree(tweets):
 	return average_degree
 
 def degree_of_vertex(current_graph,current_vertex):
+	''' Uses networkx to return the degree of a vertex in a graph'''
 	degree = 0
 	degree = current_graph.degree(current_vertex)
 	return degree
@@ -95,6 +102,8 @@ def number_of_nodes(graph):
 	return graph.number_of_nodes()
 
 def vertex_present(current_graph, vertex):
+	''' This function enables us to check if a hashtag of a new tweet is already
+		in the graph or not '''
 	vertex_list = current_graph.nodes()
 	for i in range(len(vertex_list)):
 		if(vertex_list[i] == vertex):
@@ -105,6 +114,7 @@ def vertex_present(current_graph, vertex):
 if __name__ == "__main__":
 	
 	#efficient line-by-line read of big files
+	# Reads from input file and writes to output file
 	script, filename = argv
 	input_tw = []	
 	with open(filename) as ip:
