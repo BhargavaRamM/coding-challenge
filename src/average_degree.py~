@@ -29,8 +29,6 @@ def extract_timestamp(tweet):
 	return current_tweet_time
 
 def compare_time(current_time,parsed_time):
-	#print current_time
-	#print parsed_time
 	if not current_time or not parsed_time :
 		return False
 	m_time =  datetime.strptime(parsed_time,'%a %b %d %H:%M:%S +0000 %Y')
@@ -60,9 +58,6 @@ def average_degree(tweets):
 	i = 0
 	j = 0
 	for i in range(len(tweets)-1):
-		#while (compare_time(tweets[j]["created_at"],tweets[i]["created_at"])):
-		#for j in range(i):
-		
 		for j in range(i):
 			if(not compare_time(tweets[j]["created_at"],tweets[i]["created_at"])):
            			if len(tweets[j]["hashtags"]) >= 2:					
@@ -89,7 +84,6 @@ def average_degree(tweets):
 	for i in range(len(nodes_in_graph)):
 		total_degree = total_degree + current_graph.degree(nodes_in_graph[i])
 	average_degree_of_graph = total_degree / float(total_number_of_nodes)
-	#print average_degree_of_graph
 	average_degree.append(format(round(average_degree_of_graph,2),'.2f'))		
 	return average_degree
 
@@ -104,9 +98,9 @@ def vertex_present(current_graph, vertex):
 	vertex_list = current_graph.nodes()
 	for i in range(len(vertex_list)):
 		if(vertex_list[i] == vertex):
-			return true
+			return True
 		else:
-			return false
+			return False
 
 if __name__ == "__main__":
 	

@@ -98,9 +98,9 @@ def vertex_present(current_graph, vertex):
 	vertex_list = current_graph.nodes()
 	for i in range(len(vertex_list)):
 		if(vertex_list[i] == vertex):
-			return true
+			return True
 		else:
-			return false
+			return False
 
 if __name__ == "__main__":
 	
